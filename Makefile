@@ -1,7 +1,7 @@
 NAME = libftsolong.a
 
-src = ft_printf.c ft_write.c ft_write2.c get_next_line.c  get_next_line_utils.c mapcheck.c \
-	stplit.c
+src = ft_printf.c ft_write.c ft_write2.c get_next_line.c  get_next_line_utils.c  \
+	stplit.c player_range.c \
 
 FLGS =  -Wall -Wextra  -Werror
 

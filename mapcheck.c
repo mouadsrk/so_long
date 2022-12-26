@@ -28,7 +28,7 @@ char	*read_everyting(int fd, char *s)
 	return (free(n),n = NULL,s);
 }
 
-int chek_allelment(char **readmap)
+int chek_elelment(char **readmap)
 {
     int a;
     int b;
@@ -67,12 +67,12 @@ int mapcadre(char **m)
 	len = ft_strlen(m[0]);
 	while(m[ligne - 1][len2] == '1' && m[0][len2] == '1')
 		len2++;
-	 printf("len2= %d ligne= %d",len2,ligne);
 	if (len != len2)
 		return 0;
 	ligne--;
 	while(ligne >= 0)
 	{
+		ft_printf("%s\n",m[ligne]);
 		len2 = 0;
 		len2 = ft_strlen(m[ligne]);
 		if (len2 != len || m[ligne][0] != '1' || m[ligne][len2 -1] != '1')
@@ -81,6 +81,7 @@ int mapcadre(char **m)
 	}
 	return 1;
 }
+
 
 int map_quality()
 {
@@ -99,12 +100,13 @@ int map_quality()
         return 0;
 	free(readmap);
 	readmap =NULL;
-	i =  chek_allelment(map_dimention);
+	i =  chek_elelment(map_dimention);
 		if(i == 0)
 		return 0;
 	i = mapcadre(map_dimention);
 		if(i == 0)
         return 0;
+		
     return 1;
 }
 int main ()

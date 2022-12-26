@@ -11,6 +11,8 @@
 # include<stdlib.h>
 # include<stdarg.h>
 
+
+int     map_quality();
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_printf(const char *s, ...);
 int     ft_putchar(char c);
