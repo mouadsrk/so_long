@@ -52,6 +52,7 @@ void deQueue(Queue *p)
     p->rear = -1;
   }
 }
+// if(p->front > p->rear) rear star with -1 but with front 0 
 
 void freeQueue(Queue **p)
 {
