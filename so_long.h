@@ -11,8 +11,33 @@
 # include<stdlib.h>
 # include<stdarg.h>
 
+typedef struct t_h_v
+{
+    int h;
+    int v; 
+    int *eh;
+    int *ev;
+}t_h_v;
 
-int     map_quality();
+typedef struct Queue
+{
+ int front ;
+ int rear  ;
+ char *h;
+ char *v;
+ char size;
+}Queue;
+
+
+void free_t_h_v(t_h_v *e);
+void freeQueue(Queue **p);
+void deQueue(Queue *p);
+Queue* new_Queue(int SIZE);
+void enQueue(char h,char v,Queue *p);
+int number_of_element(t_h_v *s ,char ** map);
+int map_data(char ** m);
+void	ft_free(char **arr, int r);
+int     map();
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_printf(const char *s, ...);
 int     ft_putchar(char c);

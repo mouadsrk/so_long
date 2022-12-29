@@ -33,9 +33,11 @@ void	ft_free(char **arr, int r)
 	while (i <= r)
 	{
 		free(arr[i]);
+		arr[i] = NULL;
 		i++;
 	}
 	free(arr);
+	arr = NULL;
 }
 
 int	ft_word(char const	*s, char c)

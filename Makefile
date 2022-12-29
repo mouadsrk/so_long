@@ -1,7 +1,7 @@
 NAME = libftsolong.a
 
 src = ft_printf.c ft_write.c ft_write2.c get_next_line.c  get_next_line_utils.c  \
-	stplit.c player_range.c \
+	stplit.c mapdata.c \
 
 FLGS =  -Wall -Wextra  -Werror
 
@@ -28,5 +28,12 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all 
+
+
+run: re
+	@clear
+	@gcc mapcheck.c libftsolong.a
+	@./a.out
+
 
 .PHONY: clean fclean 
