@@ -34,7 +34,6 @@ int chek_elelment(char **readmap,int *i)
     int b;
     int c;
 
-	
 	b = 0 ;
 	a = 0 ;
 	c = 0 ;
@@ -92,9 +91,9 @@ int map_quality(char **map_dimention)
 	i = mapcadre(map_dimention);
 	if(i == 0)
         return (ft_free(map_dimention,c),0);
-	 i = map_data(map_dimention);
+	i  = map_data(map_dimention, &i);
 		if(i == 0)
-	 	return 0;
+	 	return (ft_free(map_dimention,c),0);
 	return(1);
 
 }

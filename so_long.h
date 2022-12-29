@@ -13,10 +13,10 @@
 
 typedef struct t_h_v
 {
-    int h;
-    int v; 
-    int *eh;
-    int *ev;
+    int ph;
+    int pv; 
+    int *h;
+    int *v;
 }t_h_v;
 
 typedef struct Queue
@@ -28,14 +28,14 @@ typedef struct Queue
  char size;
 }Queue;
 
-
+ player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);
 void deQueue(Queue *p);
 Queue* new_Queue(int SIZE);
 void enQueue(char h,char v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
-int map_data(char ** m);
+int map_data(char ** m, int *i);
 void	ft_free(char **arr, int r);
 int     map();
 char	*ft_substr(char const *s, unsigned int start, size_t len);

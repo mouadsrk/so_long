@@ -18,8 +18,8 @@ int number_of_element(t_h_v *s ,char ** map)
 				cont++;
 			else if(map[i][j] == 'P')
 			{
-				s->h = i;
-				s->v = j;
+				s->ph = i;
+				s->pv = j;
 			}
 			j++;
 		}
@@ -43,40 +43,39 @@ void set_element_position(char **map , int cont ,t_h_v *element_pos )
 		{
 			if(map[i][j] == 'C' || map[i][j] == 'E')
 			{
-				element_pos->eh[cont] = i;
-				element_pos->ev[cont++] = j;
+				element_pos->h[cont] = i;
+				element_pos->v[cont++] = j;
 			}
 			j++;
 		}
 		i++;
 	}
-	element_pos->eh[cont] = -1337;
-	element_pos->ev[cont] = -1337;
+	element_pos->h[cont] = -1337;
+	element_pos->v[cont] = -1337;
 }
 
-int map_data(char ** m)
+int map_data(char ** m, int *i)
 {
     size_t map_nodes;
 	int cont;
 	t_h_v player_position;
-	t_h_v element_pos;
-	int i;
-
-	i = 0;
+	t_h_v el_po;
+	
     map_nodes  = 0;
     while(m[map_nodes])
     	map_nodes++;
     map_nodes = (ft_strlen(m[0]) - 2) * (map_nodes - 2);
 	cont = number_of_element(&player_position,m);
-	element_pos.eh = malloc((cont + 1) * sizeof(int));
-	 if(!element_pos.eh)
-		return (ft_free(m,cont), 0);
-	element_pos.ev = malloc((cont + 1) * sizeof(int));
-	if(!element_pos.ev)
-	 	return (ft_free(m,cont),0,free(element_pos.eh),element_pos.eh=NULL,0);
-	  set_element_position(m,cont,&element_pos);
-	while(element_pos.ev[i] != -1337)
-	i++;
+	el_po.h = malloc((cont + 1) * sizeof(int));
+	 if(!el_po.h)
+		return (0);
+	el_po.v = malloc((cont + 1) * sizeof(int));
+	if(!el_po.v)
+	 	return (free(el_po.h),el_po.h=NULL,0);
+	set_element_position(m,cont,& el_po);
+	i = player_range(el_po,player_position,map_nodes);
+	if(*i == 0)
+		return (free(el_po.h), el_po.h = NULL, free(el_po.h), el_po.h = NULL, 0);
 	
-	return 1;
+	return (1);
 }
