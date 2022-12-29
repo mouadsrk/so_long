@@ -4,6 +4,9 @@
 Queue* new_Queue(int SIZE)
 {
   Queue *p;
+  int i;
+  
+  i = 0;
   p = malloc (sizeof(Queue));
     if(!p)
       return (NULL);
@@ -13,12 +16,17 @@ Queue* new_Queue(int SIZE)
   p->h = malloc (sizeof(int) * (SIZE + 1));
   if(!p->h)
       return (free(p),p = NULL,NULL);
+  
   p->v = malloc (sizeof(int) * (SIZE + 1));
   if(!p->v)
       return (free(p),p = NULL,free(p->v),p->v = NULL,NULL);
-  p->h[SIZE] = -1337;
-  p->v[SIZE] = -1337;
-  
+  while(i <  SIZE + 1 )
+    {
+  p->h[i] = -1337;
+  p->v[i] = -1337;
+  printf("h = %d v = %d",p->h[i],p->v[i]);
+  i++;
+    }
   return (p);
 }
 
