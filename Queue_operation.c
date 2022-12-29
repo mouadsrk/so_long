@@ -10,19 +10,19 @@ Queue* new_Queue(int SIZE)
   p->front = -1;
   p->rear = -1;
   p->size = SIZE;
-  p->h = malloc (SIZE + 1);
+  p->h = malloc (sizeof(int) * (SIZE + 1));
   if(!p->h)
       return (free(p),p = NULL,NULL);
-  p->v = malloc (SIZE + 1);
+  p->v = malloc (sizeof(int) * (SIZE + 1));
   if(!p->v)
       return (free(p),p = NULL,free(p->v),p->v = NULL,NULL);
-  p->h[SIZE] = '\0';
-  p->v[SIZE] = '\0';
+  p->h[SIZE] = -1337;
+  p->v[SIZE] = -1337;
   
   return (p);
 }
 
-void enQueue(char h,char v,Queue *p)
+void enQueue(int h, int v,Queue *p)
 {
   if (p->rear == p->size - 1)
     return ;
@@ -58,7 +58,7 @@ void freeQueue(Queue **p)
 void free_t_h_v(t_h_v *e)
 {
     free(e->h);
-    e->eh = NULL;
-    free(e->ev);
-    e->ev = NULL;
+    e->h = NULL;
+    free(e->v);
+    e->v = NULL;
 }

@@ -23,17 +23,17 @@ typedef struct Queue
 {
  int front ;
  int rear  ;
- char *h;
- char *v;
- char size;
+ int *h;
+ int *v;
+ int size;
 }Queue;
 
- player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes);
+int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);
 void deQueue(Queue *p);
 Queue* new_Queue(int SIZE);
-void enQueue(char h,char v,Queue *p);
+void enQueue(int h,int v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
 int map_data(char ** m, int *i);
 void	ft_free(char **arr, int r);
