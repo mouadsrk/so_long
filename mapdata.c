@@ -60,7 +60,7 @@ int map_data(char ** m, int *i)
 	int cont;
 	t_h_v player_position;
 	t_h_v el_po;
-	
+	int c = 0;
     map_nodes  = 0;
     while(m[map_nodes])
     	map_nodes++;
@@ -73,7 +73,7 @@ int map_data(char ** m, int *i)
 	if(!el_po.v)
 	 	return (free(el_po.h),el_po.h=NULL,0);
 	set_element_position(m,cont,& el_po);
-	i = player_range(el_po,player_position,map_nodes, m);
+	*i = player_range(el_po,player_position,map_nodes, m);
 	if(*i == 0)
 		return (free(el_po.h), el_po.h = NULL, free(el_po.h), el_po.h = NULL, 0);
 	
