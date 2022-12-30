@@ -14,7 +14,7 @@ int number_of_element(t_h_v *s ,char ** map)
 		j= 0;
 		while(map[i][j])
 		{
-			if(map[i][j] == 'C' || map[i][j] == 'E')
+			if(map[i][j] == 'C')
 				cont++;
 			else if(map[i][j] == 'P')
 			{
@@ -41,11 +41,14 @@ void set_element_position(char **map , int cont ,t_h_v *element_pos )
 		j= 0;
 		while(map[i][j])
 		{
-			if(map[i][j] == 'C' || map[i][j] == 'E')
-			{
+			if(map[i][j] == 'C')
 				element_pos->h[cont] = i;
+			if(map[i][j] == 'C')	
 				element_pos->v[cont++] = j;
-			}
+			if(map[i][j] == 'E')
+				element_pos->ph= i;
+			if(map[i][j] == 'E')
+				element_pos->pv = j;
 			j++;
 		}
 		i++;
@@ -75,7 +78,7 @@ int map_data(char ** m, int *i)
 	set_element_position(m,cont,& el_po);
 	*i = player_range(el_po,player_position,map_nodes, m);
 	if(*i == 0)
-		return (free(el_po.h), el_po.h = NULL, free(el_po.h), el_po.h = NULL, 0);
+		return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL, 0);
 	
 	return (1);
 }

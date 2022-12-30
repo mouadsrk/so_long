@@ -16,7 +16,6 @@ Queue* new_Queue(int SIZE)
   p->h = malloc (sizeof(int) * (SIZE + 1));
   if(!p->h)
       return (free(p),p = NULL,NULL);
-  
   p->v = malloc (sizeof(int) * (SIZE + 1));
   if(!p->v)
       return (free(p),p = NULL,free(p->v),p->v = NULL,NULL);
@@ -38,6 +37,9 @@ void enQueue(int h, int v,Queue *p)
   p->front = 0;
   p->h[p->rear] = h;
   p->v[p->rear] = v;
+  //  printf("enQueue ------------\n");
+  // printf("r = %d\n",p->rear);
+  // printf("f = %d\n",p->front);
 }
 
 void deQueue(Queue *p)
@@ -52,9 +54,9 @@ void deQueue(Queue *p)
     p->front = -1;
     p->rear = -1;
   }
-    printf("deQueue ------------\n");
-  printf("r = %d\n",p->rear);
-  printf("f = %d\n",p->front);
+    // printf("deQueue ------------\n");
+  // printf("r = %d\n",p->rear);
+  // printf("f = %d\n",p->front);
 }
 // if(p->front > p->rear) rear star with -1 but with front 0 
 
