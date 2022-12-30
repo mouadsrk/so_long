@@ -80,5 +80,5 @@ int map_data(char ** m, int *i)
 	if(*i == 0)
 		return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL, 0);
 	
-	return (1);
+	return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL,1);
 }

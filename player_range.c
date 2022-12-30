@@ -2,55 +2,55 @@
 
 int c_Queued(int h, int v,Queue *q )
 {
-    int i;
+	int i;
 
-    i = 0;
-    if(q->front == -1 )
-    return 0;
-    while(i <= q->rear)
-    {
-        if(h == q->h[i] & v == q->v[i])
-            return 1;
-        i++;
-    }
-    return 0;
+	i = 0;
+	if(q->front == -1 )
+	return 0;
+	while(i <= q->rear)
+	{
+		if(h == q->h[i] & v == q->v[i])
+			return 1;
+		i++;
+	}
+	return 0;
 }
 
 void enQueue_neighbours(Queue **p,Queue *Queued,char **m)
 {
-    int h;
-    int v;
+	int h;
+	int v;
 
-    if((*p)->front == - 1)
-        return ;
-    h = (*p)->h[(*p)->front];
-    v = (*p)->v[(*p)->front];
+	if((*p)->front == - 1)
+		return ;
+	h = (*p)->h[(*p)->front];
+	v = (*p)->v[(*p)->front];
 
-    
-    if(m[h][v + 1] != '1' && m[h][v + 1] != 'E' && !c_Queued(h, v + 1, Queued))
-    {
-        // printf("Q---------\n");
-        // printf("R1\n");
-        enQueue(h, v + 1, *p);
-    }
-    if(m[h][v - 1] != '1' && m[h][v - 1] != 'E' && !c_Queued(h,v - 1, Queued))
-    {
-        // printf("Q---------\n");
-        // printf("L2\n");
-        enQueue(h, v  - 1, *p); 
-    }
-    if(m[h + 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h + 1, v, Queued))
-    {
-        // printf("Q---------\n");
-        // printf("D3\n");
-        enQueue(h + 1 ,v, *p);
-    }
-    if(m[h - 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h - 1, v, Queued))
-    {
-        // printf("Q---------\n");
-        // printf("U4\n");
-        enQueue(h - 1 ,v, *p);
-    }
+	
+	if(m[h][v + 1] != '1' && m[h][v + 1] != 'E' && !c_Queued(h, v + 1, Queued))
+	{
+		// printf("Q---------\n");
+		// printf("R1\n");
+		enQueue(h, v + 1, *p);
+	}
+	if(m[h][v - 1] != '1' && m[h][v - 1] != 'E' && !c_Queued(h,v - 1, Queued))
+	{
+		// printf("Q---------\n");
+		// printf("L2\n");
+		enQueue(h, v  - 1, *p); 
+	}
+	if(m[h + 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h + 1, v, Queued))
+	{
+		// printf("Q---------\n");
+		// printf("D3\n");
+		enQueue(h + 1 ,v, *p);
+	}
+	if(m[h - 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h - 1, v, Queued))
+	{
+		// printf("Q---------\n");
+		// printf("U4\n");
+		enQueue(h - 1 ,v, *p);
+	}
 }
 
 int check_EXIT(t_h_v el_po,Queue *visited,char **map)
@@ -124,7 +124,7 @@ int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
 
 // 012345678910
 
-
+	
 // 11111111111 
 // 1000C0100E1 
 // 100000C0001 

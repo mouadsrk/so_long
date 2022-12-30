@@ -19,12 +19,6 @@ char	*read_everyting(int fd, char *s)
 		n[i] = '\0';
 		s = ft_strjoin(s, n);
 	}
-	while(s[i])
-	{
-		if(s[i] == '\n' && s[i + 1] == '\n')
-		return(free (s), s = NULL, free(n), n = NULL, NULL);
-		i++;
-	}
 	return (free(n),n = NULL,s);
 }
 
@@ -44,7 +38,7 @@ int chek_elelment(char **readmap,int *i)
         if(ft_strchr(readmap[*i],'P'))
             b++;
         if(ft_strchr(readmap[*i],'E'))
-            c++;
+            c = 1;
 		(*i)++;
 	}
     if(a ==1 && b == 1 && c == 1)
@@ -95,7 +89,6 @@ int map_quality(char **map_dimention)
 		if(i == 0)
 	 	return (ft_free(map_dimention,c),0);
 	return(1);
-
 }
 
 int map()
@@ -108,6 +101,13 @@ int map()
 	readmap = read_everyting(fd,readmap);
 	if(!readmap)
 		return 0;
+	fd = 0;
+	while(readmap[fd])
+	{
+		if((readmap[fd] == '\n' && readmap[fd + 1] == '\n') || (readmap[0] == '\n'))
+		return(0);
+		fd++;
+	}
 	map_dimention = ft_split(readmap, '\n');
 	if(!map_dimention)
         return (free(readmap),readmap = NULL,0);
@@ -115,9 +115,9 @@ int map()
 	readmap = NULL;
 	if (map_quality(map_dimention) == 0)
 		return 0;
-	
     return 1;
 }
+
 int main ()
 {
 	int i;
