@@ -10,6 +10,7 @@
 # include <fcntl.h> 
 # include<stdlib.h>
 # include<stdarg.h>
+#include <mlx.h>
 
 typedef struct t_h_v
 {

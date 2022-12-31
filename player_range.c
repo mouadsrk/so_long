@@ -45,7 +45,7 @@ void enQueue_neighbours(Queue **p,Queue *Queued,char **m)
 		printf("D3\n");
 		enQueue(h + 1 ,v, *p);
 	}
-	if((m[h - 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h - 1, v, Queued)))
+	if((m[h - 1][v] == '0' || m[h - 1][v] == 'C') && (!c_Queued(h - 1, v, Queued)))
 	{
 
 		printf("Q---------\n");
@@ -74,6 +74,21 @@ int check_EXIT(t_h_v el_po,Queue *visited,char **map)
 	return 0;
 }
 
+int check_elpo(t_h_v el_po,Queue *visited)
+{
+	int i;
+
+	i = 0;
+    while(el_po.h[i] != -1337)
+    {
+        if(c_Queued(el_po.h[i],el_po.v[i],visited))
+            i++;
+        else 
+		return 0;
+	}
+	return 1;
+}
+
 int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
 {
     Queue *p;
@@ -87,34 +102,18 @@ int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
     visited= new_Queue((int) map_nodes);
     if(!visited)
         return (freeQueue(&p),0);
-        printf("Q---------\n");
     enQueue(player_position.ph,player_position.pv,p);
      while(i <= map_nodes)    
     {
         enQueue_neighbours(&p,p,m);
-        // printf("%d %d\n",p->h[i],p->v[i]);
         i++;
         if(!c_Queued(p->h[p->front],p->v[p->front],visited)) 
-        {
-        printf("visitied--------\n"); 
-        enQueue(p->h[p->front],p->v[p->front],visited);
-        }
-        //  printf("Q---------\n");
+       		enQueue(p->h[p->front],p->v[p->front],visited);
          deQueue(p);
-        // printf("<%d>\n",i);
     }
-    i = 0;
-
-    while(el_po.h[i] != -1337)
-    {
-        if(c_Queued(el_po.h[i],el_po.v[i],visited))
-            i++;
-        else    
-            return (freeQueue(&p),freeQueue(&visited),0);
-    }
-    if(!check_EXIT(el_po,visited,m))
-    return (freeQueue(&p),freeQueue(&visited),0);
-    return 1;
+    if(!check_EXIT(el_po,visited,m)  || !check_elpo(el_po, visited))
+    	return (freeQueue(&p),freeQueue(&visited),0);
+    return (freeQueue(&p),freeQueue(&visited),1);
 }
 
 // 11111111111 0
