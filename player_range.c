@@ -27,28 +27,29 @@ void enQueue_neighbours(Queue **p,Queue *Queued,char **m)
 	v = (*p)->v[(*p)->front];
 
 	
-	if(m[h][v + 1] != '1' && m[h][v + 1] != 'E' && !c_Queued(h, v + 1, Queued))
+	if((m[h][v + 1] != '1' || m[h][v + 1] == 'C') && (!c_Queued(h, v + 1, Queued)))
 	{
-		// printf("Q---------\n");
-		// printf("R1\n");
+		printf("Q---------\n");
+		printf("R1\n");
 		enQueue(h, v + 1, *p);
 	}
-	if(m[h][v - 1] != '1' && m[h][v - 1] != 'E' && !c_Queued(h,v - 1, Queued))
+	if((m[h][v - 1] == '0' || m[h][v - 1] == 'C') && (!c_Queued(h,v - 1, Queued)))
 	{
-		// printf("Q---------\n");
-		// printf("L2\n");
+		printf("Q---------\n");
+		printf("L2\n");
 		enQueue(h, v  - 1, *p); 
 	}
-	if(m[h + 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h + 1, v, Queued))
+	if((m[h + 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h + 1, v, Queued)))
 	{
-		// printf("Q---------\n");
-		// printf("D3\n");
+		printf("Q---------\n");
+		printf("D3\n");
 		enQueue(h + 1 ,v, *p);
 	}
-	if(m[h - 1][v] != '1' && m[h + 1][v] != 'E' && !c_Queued(h - 1, v, Queued))
+	if((m[h - 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h - 1, v, Queued)))
 	{
-		// printf("Q---------\n");
-		// printf("U4\n");
+
+		printf("Q---------\n");
+		printf("U4\n");
 		enQueue(h - 1 ,v, *p);
 	}
 }
@@ -68,7 +69,7 @@ int check_EXIT(t_h_v el_po,Queue *visited,char **map)
 		return 1;
 	if (c_Queued(h + 1, v, visited))
 		return 1;
-	if(c_Queued(h + 1, v, visited))
+	if(c_Queued(h - 1, v, visited))
 		return 1;
 	return 0;
 }
@@ -86,16 +87,16 @@ int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
     visited= new_Queue((int) map_nodes);
     if(!visited)
         return (freeQueue(&p),0);
-        // printf("Q---------\n");
+        printf("Q---------\n");
     enQueue(player_position.ph,player_position.pv,p);
      while(i <= map_nodes)    
     {
         enQueue_neighbours(&p,p,m);
         // printf("%d %d\n",p->h[i],p->v[i]);
         i++;
-        if(!c_Queued(p->h[p->front],p->v[p->front],visited) && p->front != -1) 
+        if(!c_Queued(p->h[p->front],p->v[p->front],visited)) 
         {
-        // printf("visitied--------\n"); 
+        printf("visitied--------\n"); 
         enQueue(p->h[p->front],p->v[p->front],visited);
         }
         //  printf("Q---------\n");

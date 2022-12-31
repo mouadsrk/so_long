@@ -38,7 +38,7 @@ int chek_elelment(char **readmap,int *i)
         if(ft_strchr(readmap[*i],'P'))
             b++;
         if(ft_strchr(readmap[*i],'E'))
-            c = 1;
+            c++;
 		(*i)++;
 	}
     if(a ==1 && b == 1 && c == 1)
@@ -87,7 +87,9 @@ int map_quality(char **map_dimention)
         return (ft_free(map_dimention,c),0);
 	i  = map_data(map_dimention, &i);
 		if(i == 0)
+		{
 	 	return (ft_free(map_dimention,c),0);
+		}
 	return(1);
 }
 

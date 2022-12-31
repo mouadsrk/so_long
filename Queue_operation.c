@@ -38,8 +38,8 @@ void enQueue(int h, int v,Queue *p)
   p->h[p->rear] = h;
   p->v[p->rear] = v;
   //  printf("enQueue ------------\n");
-  // printf("r = %d\n",p->rear);
-  // printf("f = %d\n",p->front);
+  printf("r = %d\n",p->rear);
+  printf("f = %d\n",p->front);
 }
 
 void deQueue(Queue *p)
