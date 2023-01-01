@@ -25,33 +25,14 @@ void enQueue_neighbours(Queue **p,Queue *Queued,char **m)
 		return ;
 	h = (*p)->h[(*p)->front];
 	v = (*p)->v[(*p)->front];
-
-	
-	if((m[h][v + 1] != '1' || m[h][v + 1] == 'C') && (!c_Queued(h, v + 1, Queued)))
-	{
-		printf("Q---------\n");
-		printf("R1\n");
+	if((m[h][v + 1] == '0' || m[h][v + 1] == 'C') && (!c_Queued(h, v + 1, Queued)))
 		enQueue(h, v + 1, *p);
-	}
-	if((m[h][v - 1] == '0' || m[h][v - 1] == 'C') && (!c_Queued(h,v - 1, Queued)))
-	{
-		printf("Q---------\n");
-		printf("L2\n");
+	if((m[h][v - 1] == '0' || m[h][v - 1] == 'C') && (!c_Queued(h, v - 1, Queued)))
 		enQueue(h, v  - 1, *p); 
-	}
 	if((m[h + 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h + 1, v, Queued)))
-	{
-		printf("Q---------\n");
-		printf("D3\n");
 		enQueue(h + 1 ,v, *p);
-	}
 	if((m[h - 1][v] == '0' || m[h - 1][v] == 'C') && (!c_Queued(h - 1, v, Queued)))
-	{
-
-		printf("Q---------\n");
-		printf("U4\n");
 		enQueue(h - 1 ,v, *p);
-	}
 }
 
 int check_EXIT(t_h_v el_po,Queue *visited,char **map)
@@ -115,6 +96,46 @@ int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
     	return (freeQueue(&p),freeQueue(&visited),0);
     return (freeQueue(&p),freeQueue(&visited),1);
 }
+
+// int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
+// {
+//     Queue *p;
+//     Queue *visited;
+//     int i;
+
+//     i = 0;
+//     p= new_Queue((int) map_nodes);
+//     if(!p)
+//         return 0;
+//     visited= new_Queue((int) map_nodes);
+//     if(!visited)
+//         return (freeQueue(&p),0);
+//     enQueue(player_position.ph,player_position.pv,p);
+//      while(i <= map_nodes)    
+//     {
+//         enQueue_neighbours(&p,p,m);
+//         i++;
+//         if(!c_Queued(p->h[p->front],p->v[p->front],visited)) 
+//         enQueue(p->h[p->front],p->v[p->front],visited);
+
+//          deQueue(p);
+        
+//     }
+//     i = 0;
+
+//     while(el_po.h[i] != -1337)
+//     {
+//         if(c_Queued(el_po.h[i],el_po.v[i],visited))
+//             i++;
+//         else    
+//             return (freeQueue(&p),freeQueue(&visited),0);
+//     }
+//     if(!check_EXIT(el_po,visited,m))
+//     return (freeQueue(&p),freeQueue(&visited),0);
+//     return 1;
+// }
+
+
 
 // 11111111111 0
 // 1000C0100E1 1

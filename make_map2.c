@@ -22,7 +22,7 @@ char	*read_everyting(int fd, char *s)
 	return (free(n),n = NULL,s);
 }
 
-int chek_elelment(char **readmap,int *i)
+int chek_elelment(char **map,int *i)
 {
     int a;
     int b;
@@ -31,13 +31,13 @@ int chek_elelment(char **readmap,int *i)
 	b = 0 ;
 	a = 0 ;
 	c = 0 ;
-	while(readmap[*i])
+	while(map[*i])
 	{
-        if(ft_strchr(readmap[*i],'C'))
+        if(ft_strchr(map[*i],'C'))
             a = 1;
-        if(ft_strchr(readmap[*i],'P'))
+        if(ft_strchr(map[*i],'P'))
             b++;
-        if(ft_strchr(readmap[*i],'E'))
+        if(ft_strchr(map[*i],'E'))
             c++;
 		(*i)++;
 	}
@@ -73,59 +73,57 @@ int mapcadre(char **m)
 	}
 	return 1;
 }
-int map_quality(char **map_dimention)
+int map_quality(char **map)
 {
 	int i;
 	int c;
 
 	c = 0;
-	i = chek_elelment(map_dimention,&c);
+	i = chek_elelment(map,&c);
 	if(i == 0)
-		return (ft_free(map_dimention,c),0);
-	i = mapcadre(map_dimention);
+		return (ft_free(map,c),0);
+	i = mapcadre(map);
 	if(i == 0)
-        return (ft_free(map_dimention,c),0);
-	i  = map_data(map_dimention, &i);
+        return (ft_free(map,c),0);
+	i  = map_data(map, &i);
 		if(i == 0)
-		{
-	 	return (ft_free(map_dimention,c),0);
-		}
+	 	return (ft_free(map,c),0);
 	return(1);
 }
 
-int map()
+char **map_make(char **map_dimention)
 {
 	int fd;
 	char *readmap;
-	char ** map_dimention ;
+	int i;
 
-	fd = open ("map.txt",O_RDWR,0777);
+	fd = open ("map.txt", O_CREAT | O_RDWR,0777);
 	readmap = read_everyting(fd,readmap);
 	if(!readmap)
-		return 0;
-	fd = 0;
-	while(readmap[fd])
+		return NULL;
+	i = 0;
+	while(readmap[i])
 	{
-		if((readmap[fd] == '\n' && readmap[fd + 1] == '\n') || (readmap[0] == '\n'))
-		return(0);
-		fd++;
+		if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
+			return (free(readmap),readmap = NULL,NULL);
+		i++;
 	}
 	map_dimention = ft_split(readmap, '\n');
 	if(!map_dimention)
-        return (free(readmap),readmap = NULL,0);
+        return (free(readmap),readmap = NULL,NULL);
 	free(readmap);
 	readmap = NULL;
 	if (map_quality(map_dimention) == 0)
-		return 0;
-    return 1;
+		return (NULL);
+    return map_dimention;
 }
 
-int main ()
-{
-	int i;
-	i = map();
-	if (i == 1)
-		ft_printf("good map");
-	else
-		ft_printf("bad map");
-}
+// int main ()
+// {
+// 	int i;
+// 	i = map();
+// 	if (i == 1)
+// 		ft_printf("good map");
+// 	else
+// 		ft_printf("bad map");
+// }

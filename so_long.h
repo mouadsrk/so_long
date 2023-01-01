@@ -10,7 +10,6 @@
 # include <fcntl.h> 
 # include<stdlib.h>
 # include<stdarg.h>
-#include <mlx.h>
 
 typedef struct t_h_v
 {
@@ -39,7 +38,7 @@ void enQueue(int h,int v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
 int map_data(char ** m, int *i);
 void	ft_free(char **arr, int r);
-int     map();
+char    **map_make(char **map_dimention);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_printf(const char *s, ...);
 int     ft_putchar(char c);

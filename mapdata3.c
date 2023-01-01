@@ -1,5 +1,29 @@
 #include "so_long.h"
 
+int map_alphabet(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if(map[i][j] == 'E' || map[i][j] == 'C' ||
+			 map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P')
+				j++;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return 1;
+}
+
+
+
 int number_of_element(t_h_v *s ,char ** map)
 {
 	int i;
@@ -63,7 +87,9 @@ int map_data(char ** m, int *i)
 	int cont;
 	t_h_v player_position;
 	t_h_v el_po;
-	int c = 0;
+
+	if(!map_alphabet(m))
+		return 0;
     map_nodes  = 0;
     while(m[map_nodes])
     	map_nodes++;
@@ -78,8 +104,6 @@ int map_data(char ** m, int *i)
 	set_element_position(m,cont,& el_po);
 	*i = player_range(el_po,player_position,map_nodes, m);
 	if(*i == 0)
-	{
 		return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL, 0);
-	}
 	return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL,1);
 }

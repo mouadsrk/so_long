@@ -37,9 +37,6 @@ void enQueue(int h, int v,Queue *p)
   p->front = 0;
   p->h[p->rear] = h;
   p->v[p->rear] = v;
-  //  printf("enQueue ------------\n");
-  printf("r = %d\n",p->rear);
-  printf("f = %d\n",p->front);
 }
 
 void deQueue(Queue *p)
@@ -54,9 +51,7 @@ void deQueue(Queue *p)
     p->front = -1;
     p->rear = -1;
   }
-    // printf("deQueue ------------\n");
-  // printf("r = %d\n",p->rear);
-  // printf("f = %d\n",p->front);
+
 }
 // if(p->front > p->rear) rear star with -1 but with front 0 
 
