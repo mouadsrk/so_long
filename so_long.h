@@ -10,6 +10,7 @@
 # include <fcntl.h> 
 # include<stdlib.h>
 # include<stdarg.h>
+# include<stdlib.h>
 
 typedef struct t_h_v
 {
@@ -30,7 +31,7 @@ typedef struct Queue
 }Queue;
 
 
-void player_move(char **m);
+int player_move(char **m);
 int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);
@@ -40,7 +41,7 @@ void enQueue(int h,int v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
 int map_data(char ** m, int *i);
 void	ft_free(char **arr, int r);
-char    **map_make(char **map_dimention);
+int     map_make(char ** map);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int     ft_printf(const char *s, ...);
 int     ft_putchar(char c);

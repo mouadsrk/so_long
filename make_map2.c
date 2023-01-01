@@ -1,26 +1,26 @@
 #include "so_long.h"
 
-char	*read_everyting(int fd, char *s)
-{
-	int		i;
-	char	*n;
+// char	*read_everyting(int fd, char *s)
+// {
+// 	int		i;
+// 	char	*n;
 
-	i = 1;
-	n = malloc(BUFFER_SIZE + 1);
-	if (!n)
-		return (free(s), s = NULL, NULL);
-	while (i > 0)
-	{
-		i = read(fd, n, BUFFER_SIZE);
-		if (i == -1)
-			return(free (s), s = NULL, free(n), n = NULL, NULL);
-		if (i == 0)
-			break ;
-		n[i] = '\0';
-		s = ft_strjoin(s, n);
-	}
-	return (free(n),n = NULL,s);
-}
+// 	i = 1;
+// 	n = malloc(BUFFER_SIZE + 1);
+// 	if (!n)
+// 		return (free(s), s = NULL, NULL);
+// 	while (i > 0)
+// 	{
+// 		i = read(fd, n, BUFFER_SIZE);
+// 		if (i == -1)
+// 			return(free (s), s = NULL, free(n), n = NULL, NULL);
+// 		if (i == 0)
+// 			break ;
+// 		n[i] = '\0';
+// 		s = ft_strjoin(s, n);
+// 	}
+// 	return (free(n),n = NULL,s);
+// }
 
 int chek_elelment(char **map,int *i)
 {
@@ -91,31 +91,34 @@ int map_quality(char **map)
 	return(1);
 }
 
-char **map_make(char **map_dimention)
+int	map_make(char ** map)
 {
-	int fd;
-	char *readmap;
-	int i;
+	// int fd;
+	// char **map_dimention;
+	// char *readmap;
+	// int i;
 
-	fd = open ("map.txt", O_CREAT | O_RDWR,0777);
-	readmap = read_everyting(fd,readmap);
-	if(!readmap)
-		return NULL;
-	i = 0;
-	while(readmap[i])
-	{
-		if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
-			return (free(readmap),readmap = NULL,NULL);
-		i++;
-	}
-	map_dimention = ft_split(readmap, '\n');
-	if(!map_dimention)
-        return (free(readmap),readmap = NULL,NULL);
-	free(readmap);
-	readmap = NULL;
-	if (map_quality(map_dimention) == 0)
-		return (NULL);
-    return map_dimention;
+	// map_dimention = NULL;
+	// fd = open ("map.txt", O_CREAT | O_RDWR,0777);
+	// readmap = read_everyting(fd,readmap);
+	// if(!readmap)
+	// 	return NULL;
+	// i = 0;
+	// while(readmap[i])
+	// {
+	// 	if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
+	// 		return (free(readmap),readmap = NULL,NULL);
+	// 	i++;
+	// }
+	// map_dimention = ft_split(readmap, '\n');
+	// if(!map_dimention)
+    //     return (free(readmap),readmap = NULL,NULL);
+	// free(readmap);
+	
+	// readmap = NULL;
+	if (map_quality(map) == 0)
+		return (0);
+    return 1;
 }
 
 // int main ()

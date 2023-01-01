@@ -39,9 +39,9 @@ size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
-	i = 0;
 	if (!s)
 		return (0);
+	i = 0;
 	while (s[i])
 	i++;
 	return (i);
@@ -67,25 +67,25 @@ char	*ft_strdup(char *s1)
 	return (ptr);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char    *ft_strjoin(char *s1, char *s2)
 {
-	size_t	lens1;
-	size_t	lens2;
-	char	*ptr;
+    char    	*str;
+    int        i;
+    int        j;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	ptr = malloc(lens1 + lens2 + 1);
-	if (ptr == NULL)
-		return (free(s1), free(s2), NULL);
-	ft_memcpy(ptr, s1, lens1);
-	ft_memcpy(ptr + lens1, s2, lens2);
-	ptr[lens1 + lens2] = '\0';
-	free(s1);
-	s1 = NULL;
-	return (ptr);
+    if (!s1 || !s2)
+        return (NULL);
+    i = ft_strlen(s2) + ft_strlen(s1);
+    str = (char *)malloc(sizeof(char) * (i + 1));
+    if (!str)
+        return (NULL);
+    i = 0;
+    j = -1;
+    while (s1[++j])
+        str[j] = s1[j];
+    while (s2[i])
+        str[j++] = s2[i++];
+    str[j] = '\0';
+        free(s1);
+    return (str);
 }

@@ -13,9 +13,10 @@ void display(char **m)
     }
 }
 
-void player_move(char **m)
+int player_move(char **m)
 {
-    
+    if(!m)
+        return 0;
     // int i;
     // i = 0;
     // while(m[i])
@@ -23,6 +24,7 @@ void player_move(char **m)
     //    printf("%s\n",m[i]);  
     //     i++;
     // }
+    return 1;
 }
 
 
