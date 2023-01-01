@@ -29,6 +29,8 @@ typedef struct Queue
  char ** map_dimen;
 }Queue;
 
+
+void player_move(char **m);
 int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);

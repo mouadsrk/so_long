@@ -1,6 +1,10 @@
 #include"so_long.h"
 
 
+
+#include"so_long.h"
+
+
 int so_long()
 {
     char **map;
@@ -11,6 +15,8 @@ int so_long()
     player_move(map);
     return 1;
 }
+
+
 int main ()
 {
 	int i;

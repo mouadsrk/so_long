@@ -2,6 +2,7 @@ NAME = libftsolong.a
 
 src = ft_printf.c ft_write.c ft_write2.c get_next_line.c  get_next_line_utils.c  \
 	stplit.c mapdata3.c player_range4.c Queue_operation.c  so_long1.c make_map2.c \
+	player_move.c
 
 FLG =  -Wall -Wextra  -Werror
 
