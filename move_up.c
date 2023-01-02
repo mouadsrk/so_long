@@ -34,6 +34,7 @@ void move_up(int *c,t_h_v *e_p, char **map)
 
 	h = e_p->ph;
 	v = e_p->pv;
+    
 	if(map[h - 1][v] == '1')
 		return ;
 	if(map[h - 1][v] == 'E' && *c != 0)
