@@ -52,7 +52,7 @@ void player_move(char **map)
 	// move_left(&c,&e_p,map);
 	// move_right(&c,&e_p,map);
 	i = 0;
-	while(j < 6)
+	while(j < 7)
 	{
 		move_up(&c,&e_p,map);
 			i = 0;
