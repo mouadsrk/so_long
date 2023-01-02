@@ -101,8 +101,7 @@ int map_quality(char **map)
 	int c;
 
 	c = 0;
-	if(!map_alphabet(map))
-		return 0;
+	
 	i = chek_elelment(map,&c);
 	if(i == 0)
 		return (ft_free(map,c),0);
@@ -112,6 +111,8 @@ int map_quality(char **map)
 	i  = map_data(map, &i);
 		if(i == 0)
 	 	return (ft_free(map,c),0);
+	if(!map_alphabet(map))
+		return (ft_free(map,c),0);
 	return(1);
 }
 

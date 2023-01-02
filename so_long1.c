@@ -49,7 +49,7 @@ char *ft_read(char **av)
 	{
 		if((readmap[i] == '\n' && readmap[i + 1] == '\n') ||
 			 (readmap[0] == '\n') || (readmap[ft_strlen(readmap) - 1] == '\n'))
-			return (free(readmap),readmap = NULL,NULL);
+			return (free(readmap),readmap = NULL, NULL);
 		i++;
 	}
     return readmap;
