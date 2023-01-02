@@ -42,9 +42,7 @@ void move_up(int *c,t_h_v *e_p, char **map)
         move_upP(c, e_p,map);
     else if(map[h][v] == 'E' && *c == 0)
     {
-        printf("%d\n",e_p->ph);
         e_p->ph -= 1;
         map[h - 1][v] = 'P'; 
-        printf("%c\n",map[h - 1][v]);
     }
 }
