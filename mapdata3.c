@@ -1,30 +1,30 @@
 #include "so_long.h"
 
-int map_alphabet(char **map)
-{
-	int i;
-	int j;
+// int map_alphabet(char **map)
+// {
+// 	int i;
+// 	int j;
 
-	i = 0;
-	while(map[i])
-	{
-		j = 0;
-		while(map[i][j])
-		{
-			if(map[i][j] == 'E' || map[i][j] == 'C' ||
-			 map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P')
-				j++;
-			else
-				return (0);
-		}
-		i++;
-	}
-	return 1;
-}
+// 	i = 0;
+// 	while(map[i])
+// 	{
+// 		j = 0;
+// 		while(map[i][j])
+// 		{
+// 			if(map[i][j] == 'E' || map[i][j] == 'C' ||
+// 			 map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P')
+// 				j++;
+// 			else
+// 				return (0);
+// 		}
+// 		i++;
+// 	}
+// 	return 1;
+// }
 
 
 
-int number_of_element(t_h_v *s ,char ** map)
+int number_of_element(t_h_v *el_po ,char ** map)
 {
 	int i;
     int j;
@@ -42,8 +42,8 @@ int number_of_element(t_h_v *s ,char ** map)
 				cont++;
 			else if(map[i][j] == 'P')
 			{
-				s->ph = i;
-				s->pv = j;
+				el_po->ph = i;
+				el_po->pv = j;
 			}
 			j++;
 		}
@@ -52,7 +52,7 @@ int number_of_element(t_h_v *s ,char ** map)
 	return (cont);
 }
 
-void set_element_position(char **map , int cont ,t_h_v *element_pos )
+void set_element_position(char **map , int cont ,t_h_v *el_po )
 {
 	int i;
 	int j;
@@ -66,35 +66,32 @@ void set_element_position(char **map , int cont ,t_h_v *element_pos )
 		while(map[i][j])
 		{
 			if(map[i][j] == 'C')
-				element_pos->h[cont] = i;
+				el_po->h[cont] = i;
 			if(map[i][j] == 'C')	
-				element_pos->v[cont++] = j;
+				el_po->v[cont++] = j;
 			if(map[i][j] == 'E')
-				element_pos->ph= i;
+				el_po->eh= i;
 			if(map[i][j] == 'E')
-				element_pos->pv = j;
+				el_po->ev = j;
 			j++;
 		}
 		i++;
 	}
-	element_pos->h[cont] = -1337;
-	element_pos->v[cont] = -1337;
+	el_po->h[cont] = -1337;
+	el_po->v[cont] = -1337;
 }
 
 int map_data(char ** m, int *i)
 {
     size_t map_nodes;
 	int cont;
-	t_h_v player_position;
 	t_h_v el_po;
 
-	if(!map_alphabet(m))
-		return 0;
     map_nodes  = 0;
     while(m[map_nodes])
     	map_nodes++;
     map_nodes = (ft_strlen(m[0]) - 2) * (map_nodes - 2);
-	cont = number_of_element(&player_position,m);
+	cont = number_of_element(&el_po,m);
 	el_po.h = malloc((cont + 1) * sizeof(int));
 	 if(!el_po.h)
 		return (0);
@@ -102,7 +99,7 @@ int map_data(char ** m, int *i)
 	if(!el_po.v)
 	 	return (free(el_po.h),el_po.h=NULL,0);
 	set_element_position(m,cont,& el_po);
-	*i = player_range(el_po,player_position,map_nodes, m);
+	*i = player_range(el_po,map_nodes, m);
 	if(*i == 0)
 		return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL, 0);
 	return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL,1);

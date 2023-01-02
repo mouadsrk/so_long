@@ -22,6 +22,28 @@
 // 	return (free(n),n = NULL,s);
 // }
 
+int map_alphabet(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while(map[i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if(map[i][j] == 'E' || map[i][j] == 'C' ||
+			 map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P')
+				j++;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return 1;
+}
+
 int chek_elelment(char **map,int *i)
 {
     int a;
@@ -79,6 +101,8 @@ int map_quality(char **map)
 	int c;
 
 	c = 0;
+	if(!map_alphabet(map))
+		return 0;
 	i = chek_elelment(map,&c);
 	if(i == 0)
 		return (ft_free(map,c),0);
@@ -91,35 +115,35 @@ int map_quality(char **map)
 	return(1);
 }
 
-int	map_make(char ** map)
-{
-	// int fd;
-	// char **map_dimention;
-	// char *readmap;
-	// int i;
+// int	map_make(char ** map)
+// {
+// 	int fd;
+// 	char **map_dimention;
+// 	char *readmap;
+// 	int i;
 
-	// map_dimention = NULL;
-	// fd = open ("map.txt", O_CREAT | O_RDWR,0777);
-	// readmap = read_everyting(fd,readmap);
-	// if(!readmap)
-	// 	return NULL;
-	// i = 0;
-	// while(readmap[i])
-	// {
-	// 	if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
-	// 		return (free(readmap),readmap = NULL,NULL);
-	// 	i++;
-	// }
-	// map_dimention = ft_split(readmap, '\n');
-	// if(!map_dimention)
-    //     return (free(readmap),readmap = NULL,NULL);
-	// free(readmap);
+// 	map_dimention = NULL;
+// 	fd = open ("map.txt", O_CREAT | O_RDWR,0777);
+// 	readmap = read_everyting(fd,readmap);
+// 	if(!readmap)
+// 		return NULL;
+// 	i = 0;
+// 	while(readmap[i])
+// 	{
+// 		if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
+// 			return (free(readmap),readmap = NULL,NULL);
+// 		i++;
+// 	}
+// 	map_dimention = ft_split(readmap, '\n');
+// 	if(!map_dimention)
+//         return (free(readmap),readmap = NULL,NULL);
+// 	free(readmap);
 	
-	// readmap = NULL;
-	if (map_quality(map) == 0)
-		return (0);
-    return 1;
-}
+// 	// readmap = NULL;
+// 	if (map_quality(map) == 0)
+// 		return (0);
+//     return 1;
+// }
 
 // int main ()
 // {

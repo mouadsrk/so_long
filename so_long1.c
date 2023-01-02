@@ -44,11 +44,11 @@ char *ft_read(char **av)
 	readmap = read_everyting(fd);
 	if(!readmap)
 		return NULL;
-
 	i = 0;
 	while(readmap[i])
 	{
-		if((readmap[i] == '\n' && readmap[i + 1] == '\n') || (readmap[0] == '\n'))
+		if((readmap[i] == '\n' && readmap[i + 1] == '\n') ||
+			 (readmap[0] == '\n') || (readmap[ft_strlen(readmap) - 1] == '\n'))
 			return (free(readmap),readmap = NULL,NULL);
 		i++;
 	}
@@ -67,9 +67,8 @@ int so_long(char **av)
         return (free(readmap),readmap = NULL,0 );
 	free(readmap);
 	readmap = NULL;
-    i = map_make(map);
-    if(i == 0)
-        return (0);
+	if (map_quality(map) == 0)
+		return (0);
     return (1);
 }
 

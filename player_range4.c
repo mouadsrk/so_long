@@ -1,38 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_range4.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/02 14:15:36 by mserrouk          #+#    #+#             */
+/*   Updated: 2023/01/02 15:12:18 by mserrouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"so_long.h"
 
-int c_Queued(int h, int v,Queue *q )
+int	c_Queued(int h, int v, Queue *q)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if(q->front == -1 )
-	return 0;
+	if (q->front == -1 )
+	return (0);
 	while(i <= q->rear)
 	{
-		if(h == q->h[i] & v == q->v[i])
+		if (h == q->h[i] & v == q->v[i])
 			return 1;
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
-void enQueue_neighbours(Queue **p,Queue *Queued,char **m)
+void enQueue_neighbours(Queue **p, Queue *Q, char **m)
 {
-	int h;
-	int v;
+	int	h;
+	int	v;
 
 	if((*p)->front == - 1)
 		return ;
 	h = (*p)->h[(*p)->front];
 	v = (*p)->v[(*p)->front];
-	if((m[h][v + 1] == '0' || m[h][v + 1] == 'C') && (!c_Queued(h, v + 1, Queued)))
+	if ((m[h][v + 1] == '0' || m[h][v + 1] == 'C') && (!c_Queued(h, v + 1, Q)))
 		enQueue(h, v + 1, *p);
-	if((m[h][v - 1] == '0' || m[h][v - 1] == 'C') && (!c_Queued(h, v - 1, Queued)))
+	if((m[h][v - 1] == '0' || m[h][v - 1] == 'C') && (!c_Queued(h, v - 1, Q)))
 		enQueue(h, v  - 1, *p); 
-	if((m[h + 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h + 1, v, Queued)))
-		enQueue(h + 1 ,v, *p);
-	if((m[h - 1][v] == '0' || m[h - 1][v] == 'C') && (!c_Queued(h - 1, v, Queued)))
-		enQueue(h - 1 ,v, *p);
+	if((m[h + 1][v] == '0' || m[h + 1][v] == 'C') && (!c_Queued(h + 1, v, Q)))
+		enQueue(h + 1 , v, *p);
+	if((m[h - 1][v] == '0' || m[h - 1][v] == 'C') && (!c_Queued(h - 1, v, Q)))
+		enQueue(h - 1 , v, *p);
 }
 
 int check_EXIT(t_h_v el_po,Queue *visited,char **map)
@@ -41,23 +53,22 @@ int check_EXIT(t_h_v el_po,Queue *visited,char **map)
 	int h;
 	int v;
 
-	h = el_po.ph;
-	v = el_po.pv;
-
-	if(c_Queued(h, v + 1, visited))
+	h = el_po.eh;
+	v = el_po.ev;
+	if (c_Queued(h, v + 1, visited))
 		return 1;
-	if(c_Queued(h,v - 1, visited))
+	if (c_Queued(h, v - 1, visited))
 		return 1;
 	if (c_Queued(h + 1, v, visited))
 		return 1;
-	if(c_Queued(h - 1, v, visited))
-		return 1;
+	if( c_Queued(h - 1, v, visited))
+		return (1);
 	return 0;
 }
 
-int check_elpo(t_h_v el_po,Queue *visited)
+int check_elpo(t_h_v el_po, Queue *visited)
 {
-	int i;
+	int	i;
 
 	i = 0;
     while(el_po.h[i] != -1337)
@@ -65,36 +76,36 @@ int check_elpo(t_h_v el_po,Queue *visited)
         if(c_Queued(el_po.h[i],el_po.v[i],visited))
             i++;
         else 
-		return 0;
+		return (0);
 	}
 	return 1;
 }
 
-int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
+int	player_range(t_h_v el_po,	size_t map_nodes,	char **m)
 {
-    Queue *p;
-    Queue *visited;
-    int i;
+    Queue	*p;
+    Queue	*visited;
+    int		i;
 
-     i = 0;
-    p= new_Queue((int) map_nodes);
-    if(!p)
+    i = 0;
+    p = new_Queue((int) map_nodes);
+    if (!p)
         return 0;
-    visited= new_Queue((int) map_nodes);
-    if(!visited)
-        return (freeQueue(&p),0);
-    enQueue(player_position.ph,player_position.pv,p);
-     while(i <= map_nodes)    
+    visited = new_Queue((int) map_nodes);
+    if (!visited)
+        return (freeQueue(&p), 0);
+    enQueue(el_po.ph,el_po.pv,p);
+     while (i <= map_nodes)    
     {
-        enQueue_neighbours(&p,p,m);
+        enQueue_neighbours(&p, p, m);
         i++;
-        if(!c_Queued(p->h[p->front],p->v[p->front],visited)) 
-       		enQueue(p->h[p->front],p->v[p->front],visited);
+        if(!c_Queued(p->h[p->front], p->v[p->front], visited)) 
+       		enQueue(p->h[p->front], p->v[p->front], visited);
          deQueue(p);
     }
     if(!check_EXIT(el_po,visited,m)  || !check_elpo(el_po, visited))
-    	return (freeQueue(&p),freeQueue(&visited),0);
-    return (freeQueue(&p),freeQueue(&visited),1);
+    	return (freeQueue(&p), freeQueue(&visited), 0);
+    return (freeQueue(&p), freeQueue(&visited), 1);
 }
 
 // int player_range(t_h_v el_po,t_h_v player_position,size_t map_nodes,char **m)
