@@ -33,10 +33,10 @@ typedef struct Queue
 }Queue;
 
 
-void move_left(int *c,t_h_v *e_p, char **map);
-void move_right(int *c,t_h_v *e_p, char **map);
-void move_down(int *c,t_h_v *e_p, char **map);
-void move_up(int *c,t_h_v *e_p, char **map);
+void move_left(int *c,t_h_v *e_p, char **map , int *number);
+void move_right(int *c,t_h_v *e_p, char **map, int *number);
+void move_down(int *c,t_h_v *e_p, char **map, int *number);
+void move_up(int *c,t_h_v *e_p, char **map, int *number);
 void player_move(char **m);
 int player_range(t_h_v el_po,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);

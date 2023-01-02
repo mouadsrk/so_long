@@ -25,7 +25,7 @@ void move_leftP(int *c,t_h_v *e_p, char **map)
 }
 
 
-void move_left(int *c,t_h_v *e_p, char **map)
+void move_left(int *c,t_h_v *e_p, char **map ,  int *number)
 {
 	int h;
 	int v;
@@ -36,6 +36,7 @@ void move_left(int *c,t_h_v *e_p, char **map)
 		return ;
 	if(map[h][v - 1] == 'E' && *c != 0)
 		return ;
-    if (map[h][v] == 'P')
-        move_leftP(c, e_p,map);
+    *number += 1;
+    ft_printf("move left move number = %d \n",*number);
+    move_leftP(c, e_p,map);
 }

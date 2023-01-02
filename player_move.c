@@ -20,7 +20,9 @@ void player_move(char **map)
 	t_h_v e_p;
 	int c;
 	int i;
-	
+	int number;
+
+	number = 0;
 	int j;
 	j = 0;
 	char v = 'k';
@@ -38,22 +40,22 @@ void player_move(char **map)
 		scanf("%c",&v);
 		if(v == 'w')
 		{
-			move_up(&c,&e_p,map);
+			move_up(&c,&e_p,map ,&number);
 			display(map);
 		}
 		else if(v == 's')
 		{
-			move_down(&c,&e_p,map);
+			move_down(&c,&e_p,map,&number);
 			display(map);
 		}
 		else if(v == 'a')
 		{
-			move_left(&c,&e_p,map);
+			move_left(&c,&e_p,map,&number);
 			display(map);
 		}
 		else if(v == 'd')
 		{
-			move_right(&c,&e_p,map);
+			move_right(&c,&e_p,map,&number);
 			display(map);
 		}
 	}

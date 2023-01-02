@@ -27,7 +27,7 @@ void move_upP(int *c,t_h_v *e_p, char **map)
 }
 
 
-void move_up(int *c,t_h_v *e_p, char **map)
+void move_up(int *c,t_h_v *e_p, char **map , int *number)
 {
 	int h;
 	int v;
@@ -39,6 +39,7 @@ void move_up(int *c,t_h_v *e_p, char **map)
 		return ;
 	if(map[h - 1][v] == 'E' && *c != 0)
 		return ;
-    if (map[h][v] == 'P')
-        move_upP(c, e_p,map);
+    *number += 1;
+    ft_printf("move up move number = %d \n",*number);
+    move_upP(c, e_p,map);
 }
