@@ -19,7 +19,7 @@ void move_leftP(int *c,t_h_v *e_p, char **map)
     {
         e_p->pv = v - 1;
         map[h][v] = '0';
-        // printf("%c\n",map[h - 1][v]); 
+        exit(0);
     }
 
 }
@@ -38,9 +38,4 @@ void move_left(int *c,t_h_v *e_p, char **map)
 		return ;
     if (map[h][v] == 'P')
         move_leftP(c, e_p,map);
-    else if(map[h][v] == 'E' && *c == 0)
-    {
-        e_p->pv -= 1;
-        map[h][v - 1] = 'P'; 
-    }
 }
