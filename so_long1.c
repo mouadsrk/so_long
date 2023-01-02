@@ -69,6 +69,7 @@ int so_long(char **av)
 	readmap = NULL;
 	if (map_quality(map) == 0)
 		return (0);
+	 player_move(map);
     return (1);
 }
 
