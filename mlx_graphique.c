@@ -17,7 +17,7 @@ void    mlx_graphique(t_vars    vars)
 {
     vars.mlx = mlx_init();
     map_dimention(&vars);
-	vars.win = mlx_new_window(vars.mlx, vars.mv * 50, vars.mh * 50, "so long");
+	vars.win = mlx_new_window(vars.mlx, vars.mv * 60, vars.mh * 60, "so long");
 	mlx_key_hook(vars.win,key_hook, &vars);
 	mlx_loop(vars.mlx);
 
