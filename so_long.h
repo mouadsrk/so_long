@@ -10,16 +10,16 @@
 # include <fcntl.h> 
 # include<stdlib.h>
 # include<stdarg.h>
-# include<stdlib.h>
+# include <mlx.h>
 
 typedef struct t_h_v
 {
-    int ph;
-    int pv; 
-    int eh;
-    int ev;
-    int *h;
-    int *v;
+	int ph;
+	int pv; 
+	int eh;
+	int ev;
+	int *h;
+	int *v;
 }t_h_v;
 
 typedef struct Queue
@@ -29,15 +29,24 @@ typedef struct Queue
  int *h;
  int *v;
  int size;
- char ** map_dimen;
 }Queue;
 
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+	char	**map;
+	int		mh;
+	int		mv;
+}t_vars;
 
+
+void    mlx_graphique(t_vars vars);
+char**	ft_read(char ** av);
 void move_left(int *c,t_h_v *e_p, char **map , int *number);
 void move_right(int *c,t_h_v *e_p, char **map, int *number);
 void move_down(int *c,t_h_v *e_p, char **map, int *number);
 void move_up(int *c,t_h_v *e_p, char **map, int *number);
-void player_move(char **m);
+void player_move(char    **map, int keycode);
 int player_range(t_h_v el_po,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);
@@ -45,7 +54,7 @@ void deQueue(Queue *p);
 Queue* new_Queue(int SIZE);
 void enQueue(int h,int v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
-int map_data(char ** m, int *i);
+int	map_data(char ** m, int *i);
 void	ft_free(char **arr, int r);
 int     map_quality(char ** map);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

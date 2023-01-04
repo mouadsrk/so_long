@@ -21,7 +21,6 @@ void move_downP(int *c,t_h_v *e_p, char **map)
         map[h][v] = '0';
 		exit(0);
     }
-
 }
 
 

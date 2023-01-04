@@ -1,28 +1,5 @@
 #include "so_long.h"
 
-// int map_alphabet(char **map)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = 0;
-// 	while(map[i])
-// 	{
-// 		j = 0;
-// 		while(map[i][j])
-// 		{
-// 			if(map[i][j] == 'E' || map[i][j] == 'C' ||
-// 			 map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P')
-// 				j++;
-// 			else
-// 				return (0);
-// 		}
-// 		i++;
-// 	}
-// 	return 1;
-// }
-
-
 
 int number_of_element(t_h_v *el_po ,char ** map)
 {

@@ -1,64 +1,59 @@
 #include"so_long.h"
 
-void display(char **map)
-{
-int i;
-i = 0;
-	while(map[i])
-		{
-			printf("%s\n",map[i]);
-			i++;
-		}
-	printf("\n\n");
-}
+// void display(char **map)
+// {
+// int i;
+// i = 0;
+// 	while(map[i])
+// 		{
+// 			printf("%s\n",map[i]);
+// 			i++;
+// 		}
+// 	printf("\n\n");
+// }
 
 
 
 
-void player_move(char **map)
+void player_move(char **map,int keycode)
 {
 	t_h_v e_p;
 	int c;
-	int i;
-	int number;
+	// int i;
+	static int number;
 
-	number = 0;
-	int j;
-	j = 0;
-	char v = 'k';
-	i = 0;
-	while(map[i])
-		{
-			printf("%s\n",map[i]);
-			i++;
-		}
+	// i = 0;
+	// while(map[i])
+	// 	{
+	// 		printf("%s\n",map[i]);
+	// 		i++;
+	// 	}
 		c = number_of_element(&e_p , map);
 	printf("c = %d\n",c);
 	
-	while(v != 'E')
-	{
-		scanf("%c",&v);
-		if(v == 'w')
+
+		if(keycode == 126)
 		{
 			move_up(&c,&e_p,map ,&number);
-			display(map);
+			// display(map);
 		}
-		else if(v == 's')
+		else if(keycode == 125)
 		{
 			move_down(&c,&e_p,map,&number);
-			display(map);
+			// display(map);
 		}
-		else if(v == 'a')
+		else if(keycode == 123)
 		{
 			move_left(&c,&e_p,map,&number);
-			display(map);
+			// display(map);
 		}
-		else if(v == 'd')
+		else if(keycode == 124)
 		{
 			move_right(&c,&e_p,map,&number);
-			display(map);
+			// display(map);
 		}
-	}
+		if(keycode == 53)
+		exit(0);
 }
 
 
