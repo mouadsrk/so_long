@@ -1,10 +1,25 @@
 #include"so_long.h"
 
-// void graphique_image()
-// {
+void graphique_image(int i,int j ,t_vars *vars)
+{
+	if(vars->map[i][j] == 'P')
+	{
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_p , j * 60,i * 60);
+	}
+	else if(vars->map[i][j] == 'E')
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_e , j * 60,i * 60);
+	else if(vars->map[i][j] == '0')
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
+	else if(vars->map[i][j] == '1')
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_w , j * 60,i * 60);
+	else if(vars->map[i][j] == 'C')
+	{
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
+		vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_c , j * 60,i * 60);
+	}	
 
-
-// }
+}
 
 
 void display(t_vars *vars)
@@ -18,25 +33,7 @@ i = 0;
 			j = 0;
 			while(vars->map[i][j])
 			{
-				if(vars->map[i][j] == 'P')
-				{
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_p , j * 60,i * 60);
-				}
-				else if(vars->map[i][j] == 'E')
-				{
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_e , j * 60,i * 60);
-				}
-				else if(vars->map[i][j] == '0')
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
-				else if(vars->map[i][j] == '1')
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_w , j * 60,i * 60);
-				else if(vars->map[i][j] == 'C')
-				{
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , j * 60,i * 60);
-					vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_c , j * 60,i * 60);
-				}
+				graphique_image(i, j ,vars);
 				j++;
 			}
 			i++;
