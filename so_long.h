@@ -37,16 +37,22 @@ typedef struct	s_vars {
 	char	**map;
 	int		mh;
 	int		mv;
+	int 	p_im;
+	void	*i_p;
+	void	*i_e;
+	void	*i_c;
+	void	*i_w;
+	void	*i_s;
 }t_vars;
 
-
-void    mlx_graphique(t_vars vars);
+void display(t_vars *vars);
+void    mlx_graphique(t_vars *vars);
 char**	ft_read(char ** av);
-void move_left(int *c,t_h_v *e_p, char **map , int *number);
-void move_right(int *c,t_h_v *e_p, char **map, int *number);
-void move_down(int *c,t_h_v *e_p, char **map, int *number);
-void move_up(int *c,t_h_v *e_p, char **map, int *number);
-void player_move(char    **map, int keycode);
+void move_left(int *c,t_h_v *e_p,t_vars *vars  , int *number);
+void move_right(int *c,t_h_v *e_p,t_vars *vars  , int *number);
+void move_down(int *c,t_h_v *e_p,t_vars *vars  , int *number);
+void move_up(int *c,t_h_v *e_p,t_vars *vars  , int *number);
+void player_move(t_vars *vars, int keycode);
 int player_range(t_h_v el_po,size_t map_nodes,char **m);
 void free_t_h_v(t_h_v *e);
 void freeQueue(Queue **p);

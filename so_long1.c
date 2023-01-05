@@ -23,7 +23,7 @@ int so_long(char **av)
 			return 0;	
 	if (map_quality(vars.map) == 0)
 		return (0);
-	mlx_graphique(vars);
+	mlx_graphique(&vars);
     return (1);
 }
 
