@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void move_leftP(int *c,t_h_v *e_p, t_vars *vars)
+void move_leftP(t_h_v *e_p, t_vars *vars)
 {
     int h;
     int v;
@@ -9,16 +9,17 @@ void move_leftP(int *c,t_h_v *e_p, t_vars *vars)
 	v = e_p->pv;
     if(vars->map[h][v - 1] == 'C' || vars->map[h][v - 1] == '0')
     {
+        vars->d = 1;
         e_p->pv = v - 1;
         if(vars->map[h][v - 1] == 'C')
-			*c -= 1;
-        // vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , (v - 1) * 60,(h) * 60);
-        vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_p , (v - 1) * 60,h * 60);
-         vars->p_im = mlx_put_image_to_window(vars->mlx, vars->win,vars->i_s , v * 60,h * 60);
+			vars->c -= 1;
+        printf("<%d>\n",vars->c);
         vars->map[h][v] = '0';
         vars->map[h][v - 1] = 'P';
+        mlx_clear_window(vars->mlx,vars->win);
+        display(vars);
     }
-    else if(vars->map[h][v - 1] == 'E' && *c == 0)
+    else if(vars->map[h][v - 1] == 'E' && vars->c == 0)
     {
         e_p->pv = v - 1;
         vars->map[h][v] = '0';
@@ -28,7 +29,7 @@ void move_leftP(int *c,t_h_v *e_p, t_vars *vars)
 }
 
 
-void move_left(int *c,t_h_v *e_p,t_vars *vars  , int *number)
+void move_left(t_h_v *e_p,t_vars *vars  , int *number)
 {
 	int h;
 	int v;
@@ -37,9 +38,9 @@ void move_left(int *c,t_h_v *e_p,t_vars *vars  , int *number)
 	v = e_p->pv;
 	if(vars->map[h][v - 1] == '1')
 		return ;
-	if(vars->map[h][v - 1] == 'E' && *c != 0)
+	if(vars->map[h][v - 1] == 'E' && vars->c != 0)
 		return ;
     *number += 1;
     ft_printf("move left move number = %d \n",*number);
-    move_leftP(c, e_p,vars);
+    move_leftP(e_p,vars);
 }

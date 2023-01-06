@@ -17,7 +17,10 @@ void    mlx_graphique(t_vars    *vars)
 {
 	int		img_width;
 	int		img_height;
+	t_h_v 	p;
 
+	vars->c = 1;
+	vars->d = 0;
 	img_width = 60;
 	img_height = 60;
     vars->mlx = mlx_init();
@@ -28,9 +31,9 @@ void    mlx_graphique(t_vars    *vars)
 	vars->i_c =  mlx_xpm_file_to_image(vars->mlx,"b_wa.xpm",&img_width,&img_height);
 	vars->i_w =  mlx_xpm_file_to_image(vars->mlx,"wall.xpm",&img_width, &img_height);
 	vars->i_s =  mlx_xpm_file_to_image(vars->mlx,"deser.xpm",&img_width ,&img_height);
+	vars->i_pl =  mlx_xpm_file_to_image(vars->mlx,"pl0.xpm",&img_width, &img_height);
+	vars->i_eo =  mlx_xpm_file_to_image(vars->mlx,"open.xpm",&img_width ,&img_height);
 	display(vars);
 	mlx_key_hook(vars->win,key_hook, vars);
 	mlx_loop(vars->mlx);
-
-
 }
