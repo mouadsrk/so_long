@@ -5,7 +5,7 @@ void graphique_image(int i,int j ,t_vars *v)
 	if(v->map[i][j] == 'P' && v->d == 0)
 	{
 		v->p_im = mlx_put_image_to_window(v->mlx, v->win, v->i_s , j * 60, i * 60);
-		v->p_im = mlx_put_image_to_window(v->mlx, v->win, v->i_p , j * 60,i * 60);
+		v->p_im = mlx_put_image_to_window(v->mlx, v->win, v->i_p , j * 60, i * 60);
 	}
 	else if(v->map[i][j] == 'P' && v->d == 1)
 	{

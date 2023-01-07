@@ -49,6 +49,7 @@ typedef struct	s_vars {
 	int		c;
 }t_vars;
 
+
 void display(t_vars *vars);
 void    mlx_graphique(t_vars *vars);
 char**	ft_read(char ** av);

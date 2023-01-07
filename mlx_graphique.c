@@ -7,10 +7,22 @@ void map_dimention(t_vars	*vars)
 	while(vars->map[vars->mh])
 		vars->mh++;
 }
+
 int	key_hook(int keycode, t_vars *vars)
 {
 	player_move(vars,keycode);
 	return (0);
+}
+
+#include <time.h>
+
+int timeout ( int seconds )
+{
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+
+    return  1;
 }
 
 void    mlx_graphique(t_vars    *vars)
@@ -34,6 +46,6 @@ void    mlx_graphique(t_vars    *vars)
 	vars->i_pl =  mlx_xpm_file_to_image(vars->mlx,"pl0.xpm",&img_width, &img_height);
 	vars->i_eo =  mlx_xpm_file_to_image(vars->mlx,"open.xpm",&img_width ,&img_height);
 	display(vars);
-	mlx_key_hook(vars->win,key_hook, vars);
+	mlx_hook(vars->win,2, 1L<<0,key_hook, vars);
 	mlx_loop(vars->mlx);
 }
