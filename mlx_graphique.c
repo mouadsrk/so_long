@@ -14,16 +14,9 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
-#include <time.h>
 
-int timeout ( int seconds )
-{
-    clock_t endwait;
-    endwait = clock () + seconds * CLOCKS_PER_SEC ;
-    while (clock() < endwait) {}
 
-    return  1;
-}
+
 
 void    mlx_graphique(t_vars    *vars)
 {
@@ -44,6 +37,9 @@ void    mlx_graphique(t_vars    *vars)
 	vars->i_w =  mlx_xpm_file_to_image(vars->mlx,"wall.xpm",&img_width, &img_height);
 	vars->i_s =  mlx_xpm_file_to_image(vars->mlx,"deser.xpm",&img_width ,&img_height);
 	vars->i_pl =  mlx_xpm_file_to_image(vars->mlx,"pl0.xpm",&img_width, &img_height);
+		if(!vars->i_pl || !vars->i_s || !vars->i_w ||
+			 !vars->i_c || !vars->i_e || !vars->i_p)
+			return(ft_printf("Error\n invalide image\n"),ft_free(vars->map,vars->mh));
 	vars->i_eo =  mlx_xpm_file_to_image(vars->mlx,"open.xpm",&img_width ,&img_height);
 	display(vars);
 	mlx_hook(vars->win,2, 1L<<0,key_hook, vars);

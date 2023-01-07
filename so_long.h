@@ -65,7 +65,7 @@ void deQueue(Queue *p);
 Queue* new_Queue(int SIZE);
 void enQueue(int h,int v,Queue *p);
 int number_of_element(t_h_v *s ,char ** map);
-int	map_data(char ** m, int *i);
+int	map_data(char ** m);
 void	ft_free(char **arr, int r);
 int     map_quality(char ** map);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

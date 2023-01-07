@@ -33,7 +33,7 @@ re : fclean all
 
 run: re
 	gcc so_long1.c libftsolong.a  -lmlx -framework OpenGL -framework AppKit
-	./a.out map.txt
+	./a.out map.ber
 
 
 .PHONY: clean fclean 

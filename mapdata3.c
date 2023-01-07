@@ -58,7 +58,7 @@ void set_element_position(char **map , int cont ,t_h_v *el_po )
 	el_po->v[cont] = -1337;
 }
 
-int map_data(char ** m, int *i)
+int map_data(char ** m)
 {
     size_t map_nodes;
 	int cont;
@@ -76,8 +76,10 @@ int map_data(char ** m, int *i)
 	if(!el_po.v)
 	 	return (free(el_po.h),el_po.h=NULL,0);
 	set_element_position(m,cont,& el_po);
-	*i = player_range(el_po,map_nodes, m);
-	if(*i == 0)
+	if(player_range(el_po,map_nodes, m) == 0)
+	{
+		ft_printf("Error\nno valid path in the map.\n");
 		return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL, 0);
+	}
 	return (free(el_po.h), el_po.h = NULL, free(el_po.v), el_po.v = NULL,1);
 }

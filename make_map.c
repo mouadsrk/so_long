@@ -28,17 +28,20 @@ char **ft_read(char **av)
 	char *readmap;
 	int i;
     char **map;
-
-	fd = open (av[1], O_CREAT | O_RDWR,0777);
+	
+	fd = open (av[1], O_RDWR,0777);
 	readmap = read_everyting(fd);
 	if(!readmap)
-		return NULL;
+		return (ft_printf("Error in read error or file doesn't exist\n"),NULL);
 	i = 0;
 	while(readmap[i])
 	{
 		if((readmap[i] == '\n' && readmap[i + 1] == '\n') ||
 			 (readmap[0] == '\n') || (readmap[ft_strlen(readmap) - 1] == '\n'))
+		{
+			ft_printf("Error\nempty ligne in map\n");
 			return (free(readmap),readmap = NULL, NULL);
+		}
 		i++;
 	}
     map = ft_split(readmap, '\n');
