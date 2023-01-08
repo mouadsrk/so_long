@@ -111,7 +111,7 @@ int map_quality(char **map)
 		return (ft_free(map,c),0);
 	i = mapcadre(map);
 	if(i == 0)
-        return (ft_free(map,c),0);
+         return (ft_free(map,c),0);
 	i  = map_data(map);
 	if(i == 0)
 	 	return (ft_free(map,c),0);

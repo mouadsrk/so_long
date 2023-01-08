@@ -1,10 +1,12 @@
 #include "so_long.h"
 
-void move_rightP(t_h_v *e_p, t_vars *vars)
+void move_rightP(t_h_v *e_p, t_vars *vars, int number)
 {
     int h;
     int v;
+    char *n;
 
+    n = ft_itoa(number);
 	h = e_p->ph;
 	v = e_p->pv;
     if(vars->map[h][v + 1] == 'C' || vars->map[h][v + 1] == '0')
@@ -13,11 +15,12 @@ void move_rightP(t_h_v *e_p, t_vars *vars)
         e_p->pv = v + 1;
         if(vars->map[h][v + 1] == 'C')
 			vars->c -= 1;
-        printf("<%d>\n",vars->c);
        vars->map[h][v] = '0';
         vars->map[h][v + 1] = 'P';
         mlx_clear_window(vars->mlx,vars->win);
+       mlx_string_put(vars->mlx,vars->win,0,(vars->mh - 1) *60,91422,n);
         display(vars);
+        free(n);
     }
     else if(vars->map[h][v + 1] == 'E' && vars->c == 0)
     {
@@ -41,6 +44,5 @@ void move_right(t_h_v *e_p,t_vars *vars  , int *number)
 	if(vars->map[h][v + 1] == 'E' && vars->c != 0)
 		return ;
     *number += 1;
-    ft_printf("move right move number = %d \n",*number);
-    move_rightP( e_p,vars);
+    move_rightP( e_p,vars,*number);
 }

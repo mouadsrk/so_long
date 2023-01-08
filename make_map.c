@@ -1,25 +1,30 @@
 #include"so_long.h"
 
-char *read_everyting(int fd)
+void	read_everyting(int fd,char **save)
 {
-	char	*buff;
-	char	*ret;
-	int	c;
+	int		i;
+	char	*next_read;
 
-	buff = malloc(1);
-	ret = malloc(1);
-	if (!buff || !ret)
-		return (NULL);
-	c = 1;
-	while (c > 0)
+	i = 1;
+	next_read = malloc(BUFFER_SIZE + 1);
+	if (!next_read)
+		return ;
+	while (i > 0)
 	{
-		c = read(fd, buff, 1);
-		if (c == -1)
-			return (free(buff), NULL);
-		buff[c] = '\0';
-		ret = ft_strjoin(ret, buff);
+		i = read(fd, next_read, BUFFER_SIZE);
+		if (i == -1)
+		{
+			free (*save);
+			save = NULL;
+			break ;
+		}
+		if (i == 0)
+			break ;
+		next_read[i] = '\0';
+		*save = ft_strjoin(*save, next_read);
 	}
-	return (free(buff), ret);
+	free(next_read);
+	next_read = NULL;
 }
 
 char **ft_read(char **av)
@@ -29,8 +34,9 @@ char **ft_read(char **av)
 	int i;
     char **map;
 	
+	readmap = NULL;
 	fd = open (av[1], O_RDWR,0777);
-	readmap = read_everyting(fd);
+	read_everyting(fd, &readmap);
 	if(!readmap)
 		return (ft_printf("Error in read error or file doesn't exist\n"),NULL);
 	i = 0;
@@ -45,7 +51,7 @@ char **ft_read(char **av)
 		i++;
 	}
     map = ft_split(readmap, '\n');
-	if(!map)
-        return (free(readmap),readmap = NULL,NULL);
+	free(readmap);
+	readmap = NULL;
     return map;
 }

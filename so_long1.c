@@ -37,7 +37,6 @@ void so_long(char **av)
 	if (map_quality(vars.map) == 0)
 		return ;
 	mlx_graphique(&vars);
-    return ;
 }
 
 int main (int ac, char **av)

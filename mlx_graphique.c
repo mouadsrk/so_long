@@ -6,6 +6,7 @@ void map_dimention(t_vars	*vars)
 	vars->mv = ft_strlen(vars->map[vars->mh]);
 	while(vars->map[vars->mh])
 		vars->mh++;
+		vars->mh++;
 }
 
 int	key_hook(int keycode, t_vars *vars)
@@ -14,6 +15,10 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
+int	ft_close(int keycode, t_vars *vars)
+{
+	exit (0);
+}
 
 
 
@@ -37,11 +42,13 @@ void    mlx_graphique(t_vars    *vars)
 	vars->i_w =  mlx_xpm_file_to_image(vars->mlx,"wall.xpm",&img_width, &img_height);
 	vars->i_s =  mlx_xpm_file_to_image(vars->mlx,"deser.xpm",&img_width ,&img_height);
 	vars->i_pl =  mlx_xpm_file_to_image(vars->mlx,"pl0.xpm",&img_width, &img_height);
-		if(!vars->i_pl || !vars->i_s || !vars->i_w ||
-			 !vars->i_c || !vars->i_e || !vars->i_p)
-			return(ft_printf("Error\n invalide image\n"),ft_free(vars->map,vars->mh));
 	vars->i_eo =  mlx_xpm_file_to_image(vars->mlx,"open.xpm",&img_width ,&img_height);
+		if(!vars->i_pl || !vars->i_s || !vars->i_w ||
+			 !vars->i_c || !vars->i_e || !vars->i_p || !vars->i_eo)
+			return(ft_printf("Error\n invalide image\n"),ft_free(vars->map,vars->mh));
 	display(vars);
+	mlx_string_put(vars->mlx,vars->win,0,(vars->mh - 1) *60,91422,"0");
+	mlx_hook(vars->win, 17, 1L<<0, ft_close, vars);
 	mlx_hook(vars->win,2, 1L<<0,key_hook, vars);
 	mlx_loop(vars->mlx);
 }
