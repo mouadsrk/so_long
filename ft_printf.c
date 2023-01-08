@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 16:43:11 by mserrouk          #+#    #+#             */
+/*   Updated: 2023/01/08 16:43:12 by mserrouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	chrch(char s)
@@ -18,13 +30,13 @@ int	formatype(char s, va_list p, int	*len)
 	else if (s == 's')
 		*len += ft_putstr(va_arg(p, char *));
 	else if (s == 'd' || s == 'i')
-		*len = ft_putnbr(va_arg(p, int) ,*len);
+		*len = ft_putnbr(va_arg(p, int), *len);
 	else if (s == 'u')
-	*len = ft_unsignedputnbr(va_arg(p, unsigned int) , *len);
+	*len = ft_unsignedputnbr(va_arg(p, unsigned int),*len);
 	else if (s == 'x')
-		*len = hexa(va_arg(p, unsigned int) ,*len);
+		*len = hexa(va_arg(p, unsigned int),*len);
 	else if (s == 'X')
-		*len = hexaup(va_arg(p, unsigned int) ,*len);
+		*len = hexaup(va_arg(p, unsigned int),*len);
 	else if (s == 'p')
 	{
 		*len += ft_putstr("0x");

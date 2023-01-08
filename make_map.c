@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 18:37:45 by mserrouk          #+#    #+#             */
+/*   Updated: 2023/01/08 18:43:20 by mserrouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"so_long.h"
 
-void	read_everyting(int fd,char **save)
+void	read_everyting(int fd, char **save)
 {
 	int		i;
 	char	*next_read;
@@ -27,31 +39,31 @@ void	read_everyting(int fd,char **save)
 	next_read = NULL;
 }
 
-char **ft_read(char **av)
+char	**ft_read(char **av)
 {
-    int fd;
-	char *readmap;
-	int i;
-    char **map;
-	
-	readmap = NULL;
-	fd = open (av[1], O_RDWR,0777);
-	read_everyting(fd, &readmap);
-	if(!readmap)
-		return (ft_printf("Error in read error or file doesn't exist\n"),NULL);
+	int		fd;
+	char	*read;
+	int		i;
+	char	**map;
+
+	read = NULL;
+	fd = open (av[1], O_RDWR, 0777);
+	read_everyting(fd, &read);
+	if (!read)
+		return (ft_printf("Error in read error or file doesn't exist\n"), NULL);
 	i = 0;
-	while(readmap[i])
+	while (read[i])
 	{
-		if((readmap[i] == '\n' && readmap[i + 1] == '\n') ||
-			 (readmap[0] == '\n') || (readmap[ft_strlen(readmap) - 1] == '\n'))
+		if ((read[i] == '\n' && read[i + 1] == '\n') || (read[0] == '\n')
+			|| (read[ft_strlen(read) - 1] == '\n'))
 		{
 			ft_printf("Error\nempty ligne in map\n");
-			return (free(readmap),readmap = NULL, NULL);
+			return (free(read), read = NULL, NULL);
 		}
 		i++;
 	}
-    map = ft_split(readmap, '\n');
-	free(readmap);
-	readmap = NULL;
-    return map;
+	map = ft_split(read, '\n');
+	free(read);
+	read = NULL;
+	return (map);
 }

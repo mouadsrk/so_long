@@ -1,2 +1,17 @@
 
 ft_printf.o
+ft_write2.o
+ft_printf.o
+ft_write.o
+*.o
+mapdata3.o
+*.o
+stplit.o
+so_long1.o
+so_long1.o
+player_range4.o
+player_move.o
+move_left.o
+map_quality2.o
+mlx_graphique.o
+move_down.o

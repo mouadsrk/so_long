@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 19:17:32 by mserrouk          #+#    #+#             */
+/*   Updated: 2023/01/08 19:17:43 by mserrouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int	ft_strchr(char *str,char c)
+int	ft_strchr(char *str, char c)
 {
 	int	i;
 
@@ -66,7 +78,6 @@ void	*ft_memcpy(void *dst, void *src, size_t n)
 	}
 	return (dst);
 }
-
 
 char	*ft_strjoin(char *s1, char *s2)
 {

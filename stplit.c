@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stplit.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/08 15:30:47 by mserrouk          #+#    #+#             */
+/*   Updated: 2023/01/08 15:31:24 by mserrouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -10,7 +22,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start >= ft_strlen((char *) s))
 		return (ft_strdup(""));
 	if (start + len >= ft_strlen((char *) s))
-		ptr = (char *) malloc((ft_strlen((char *)s) - start + 1) * sizeof(char));
+		ptr = (char *) malloc((ft_strlen((char *)s) - start + 1) * 1);
 	else
 		ptr = (char *) malloc((len + 1) * sizeof(char));
 	if (!ptr)
