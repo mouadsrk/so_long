@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long1.c                                         :+:      :+:    :+:   */
+/*   so_longb1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 15:51:08 by mserrouk          #+#    #+#             */
-/*   Updated: 2023/01/11 23:52:01 by mserrouk         ###   ########.fr       */
+/*   Updated: 2023/01/11 23:24:08 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	map_extension(char *s)
 
 void	so_long(char **av)
 {
+	int		i;
 	t_vars	vars;
 
 	if (!map_extension(av[1]))
@@ -35,13 +36,15 @@ void	so_long(char **av)
 	vars.map = ft_read(av);
 	if (!vars.map)
 		return ;
-	if (map_quality(vars.map) == 0)
+	if (map_qualityb(vars.map) == 0)
 		return ;
-	mlx_graphique(&vars);
+	mlx_graphiqueb(&vars);
 }
 
 int	main(int ac, char **av)
 {
+	int	i;
+
 	if (ac != 2)
 		return (1);
 	so_long(av);

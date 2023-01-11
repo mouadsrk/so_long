@@ -6,7 +6,7 @@
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:37:45 by mserrouk          #+#    #+#             */
-/*   Updated: 2023/01/08 18:43:20 by mserrouk         ###   ########.fr       */
+/*   Updated: 2023/01/11 00:11:14 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ char	**ft_read(char **av)
 	read = NULL;
 	fd = open (av[1], O_RDWR, 0777);
 	read_everyting(fd, &read);
+	close(fd);
 	if (!read)
-		return (ft_printf("Error in read error or file doesn't exist\n"), NULL);
-	i = 0;
-	while (read[i])
+		return (ft_printf("Error\nerror in read or file doesn't exist\n"), NULL);
+	i = -1;
+	while (read[++i])
 	{
 		if ((read[i] == '\n' && read[i + 1] == '\n') || (read[0] == '\n')
 			|| (read[ft_strlen(read) - 1] == '\n'))
@@ -60,7 +61,6 @@ char	**ft_read(char **av)
 			ft_printf("Error\nempty ligne in map\n");
 			return (free(read), read = NULL, NULL);
 		}
-		i++;
 	}
 	map = ft_split(read, '\n');
 	free(read);

@@ -6,7 +6,7 @@
 /*   By: mserrouk <mserrouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 14:15:36 by mserrouk          #+#    #+#             */
-/*   Updated: 2023/01/08 19:31:56 by mserrouk         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:07:39 by mserrouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ void	enqueue_neighbours(t_queue **p, t_queue *Q, char **m)
 		enqueue(h - 1, v, *p);
 }
 
-int	check_exit(t_h_v el_po, t_queue *visited, char **map)
+int	check_exit(t_h_v el_po, t_queue *visited)
 {
-	int	i;
 	int	h;
 	int	v;
 
@@ -85,7 +84,7 @@ int	player_range(t_h_v el_po,	size_t map_nodes,	char **m)
 {
 	t_queue	*p;
 	t_queue	*visited;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	p = new_queue((int) map_nodes);
@@ -103,19 +102,7 @@ int	player_range(t_h_v el_po,	size_t map_nodes,	char **m)
 			enqueue(p->h[p->front], p->v[p->front], visited);
 		dequeue(p);
 	}
-	if (!check_exit(el_po, visited, m) || !check_elpo(el_po, visited))
+	if (!check_exit(el_po, visited) || !check_elpo(el_po, visited))
 		return (freequeue(&p), freequeue(&visited), 0);
 	return (freequeue(&p), freequeue(&visited), 1);
 }
-
-// 11111111111 0
-// 1000C0100E1 1
-// 100000C0001 2
-// 11111P0C111 3
-// 11111111111 4
-// 012345678910
-// 11111111111 
-// 1000C0100E1 
-// 100000C0001 
-// 11111P0C111 
-// 11111111111
